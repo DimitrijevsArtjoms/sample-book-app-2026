@@ -84,9 +84,12 @@ def build() {
 
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} environment has started.."
+    git branch: 'main', poll: false, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
+    powershell 'npm install'
+    powershell 'ls'
     bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
     powershell ".\\node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- -- ${port}"
-    bat "ls"
+
     echo "Deployment to ${environment} environment finished.."
 
 
