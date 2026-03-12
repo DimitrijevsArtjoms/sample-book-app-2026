@@ -18,7 +18,7 @@ pipeline {
         stage('deploy-dev') {
             steps {
                 script{
-                    deploy("DEV", 3000)
+                    deploy("DEV", 1010)
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage('deploy-stg') {
             steps {
                 script{
-                    deploy("STG", 3000)
+                    deploy("STG", 2020)
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
         stage('deploy-prd') {
             steps {
                 script{
-                    deploy("PRD", 3000)
+                    deploy("PRD", 3030)
                 }
             }
         }
