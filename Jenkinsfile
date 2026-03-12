@@ -85,7 +85,7 @@ def test(String environment) {
     echo "Testing Sample Book Application service has started on ${environment} environment.."
     git branch: 'main', poll: false, url: 'https://github.com/DimitrijevsArtjoms/RTU-sample-API-automation-2026.git'
     powershell 'npm install'
-    powershell 'npm run BOOKS_${environment}'
+    powershell "npm run BOOKS_${environment}"
     
     echo "Testing Sample Book Application service finished.."
 }
