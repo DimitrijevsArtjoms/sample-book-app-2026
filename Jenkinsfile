@@ -77,10 +77,10 @@ def build() {
     echo "Dependencies fully installed.."
 }
 
-def deploy(String environment) {
-    echo "Deployment to ${environment} environment has started.."
-    echo "Deployment to ${environment} environment finished.."
-}
+// def deploy(String environment) {
+//     echo "Deployment to ${environment} environment has started.."
+//     echo "Deployment to ${environment} environment finished.."
+// }
 
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} environment has started.."
