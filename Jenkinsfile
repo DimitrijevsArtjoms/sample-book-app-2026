@@ -18,7 +18,7 @@ pipeline {
         stage('deploy-dev') {
             steps {
                 script{
-                    deploy("DEV")
+                    deploy("DEV", 3000)
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage('deploy-stg') {
             steps {
                 script{
-                    deploy("STG")
+                    deploy("STG", 3000)
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
         stage('deploy-prd') {
             steps {
                 script{
-                    deploy("PRD")
+                    deploy("PRD", 3000)
                 }
             }
         }
@@ -74,6 +74,7 @@ def build() {
     echo "Installing all necessary node dependencies.."
     powershell 'npm install'
     powershell 'ls'
+    echo "Dependencies fully installed.."
 }
 
 def deploy(String environment) {
@@ -81,7 +82,14 @@ def deploy(String environment) {
     echo "Deployment to ${environment} environment finished.."
 }
 
+def deploy(String environment, int port) {
+    echo "Deployment to ${environment} environment has started.."
+    powershell "pm2 start -n \"${environment}\" index.js --port ${port}"
+    echo "Deployment to ${environment} environment finished.."
+}
+
 def test(String environment) {
     echo "Testing Sample Book Application service has started on ${environment} environment.."
     echo "Testing Sample Book Application service finished.."
 }
+
