@@ -85,9 +85,9 @@ def deploy(String environment) {
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} environment has started.."
     //powershell "pm2 start -n \"${environment}\" index.js -- ${port}"
-    // bat "node_modules\\.bin\\pm2 delete \"${environment}\" || exit 0"
-    // bat "node_modules\\.bin\\pm2 start -n \"${environment}\" index.js -- ${port}"
-    bat "node_modules\\.bin\\pm2 reload \"${environment}\" index.js -- ${port}"
+    // bat "node_modules\\.bin\\pm2 delete \"$books-{environment}\" || exit 0"
+    // bat "node_modules\\.bin\\pm2 start -n \"$books-{environment}\" index.js -- ${port}"
+    bat "node_modules\\.bin\\pm2 reload \"books-${environment}\" index.js -- ${port}"
     echo "Deployment to ${environment} environment finished.."
 }
 
