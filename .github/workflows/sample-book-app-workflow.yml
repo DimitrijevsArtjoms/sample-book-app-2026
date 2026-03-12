@@ -1,0 +1,50 @@
+name: Sample Book App Workflow
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build-install-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Installing all necessary node dependencies.."
+  deploy-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Deployment to DEV environment has started.."
+  test-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Testing Sample Book Application service has started on DEV environment.."
+  deploy-stg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Deployment to STG environment has started.."
+  test-stg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Testing Sample Book Application service has started on STG environment.."
+  deploy-prd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Deployment to PRD environment has started.."
+  test-prd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Print step name
+        run: echo "Testing Sample Book Application service has started on PRD environment.."
