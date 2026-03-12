@@ -85,7 +85,7 @@ def deploy(String environment) {
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} environment has started.."
     //powershell "pm2 start -n \"${environment}\" index.js --port ${port}"
-    bat "node_modules\\.bin\\pm2 start -n \"${environment}\" index.js --port ${port}"
+    bat "node_modules\\.bin\\pm2 start -n \"${environment}\" index.js -- ${port}"
     echo "Deployment to ${environment} environment finished.."
 }
 
