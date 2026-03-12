@@ -84,7 +84,7 @@ def build() {
 
 def deploy(String environment, int port) {
     echo "Deployment to ${environment} environment has started.."
-    git branch: 'main', poll: false, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
+    git branch: 'main', poll: true, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
     powershell 'npm install'
     powershell 'ls'
     bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
@@ -107,7 +107,7 @@ def test(String environment) {
     git branch: 'main', poll: false, url: 'https://github.com/DimitrijevsArtjoms/RTU-sample-API-automation-2026.git'
     powershell 'npm install'
     powershell 'ls'
-    powershell 'npm run books'
+    powershell "npm run books -- http://localhost:${port}"
     
     echo "Testing Sample Book Application service finished.."
 }
