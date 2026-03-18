@@ -18,7 +18,6 @@ jobs:
         run: echo "All dependencies have been installed successfully.."
   deploy-dev:
     runs-on: ubuntu-latest
-    needs: build-install-deps
     steps:
       - uses: actions/checkout@v6
       - run: echo "Deployment to DEV environment has started.."
@@ -30,39 +29,46 @@ jobs:
       - name: Running service
         run: ./node_modules/.bin/pm2 start index.js --name "books-dev" -- 1010
       - run: echo "Deployment to DEV environment finished.."
-
-    # echo "Deployment to ${environment} environment has started.."
-    # git branch: 'main', poll: true, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
-    # powershell 'npm install'
-    # powershell 'ls'
-    # bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
-    # powershell ".\\node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- -- ${port}"
-
-    # echo "Deployment to ${environment} environment finished.."
   test-dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - name: Print step name
         run: echo "Testing Sample Book Application service has started on DEV environment.."
+
   deploy-stg:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Print step name
-        run: echo "Deployment to STG environment has started.."
+      - run: echo "Deployment to STG environment has started.."
+      - name: Install all dependencies
+        run: npm install
+      - name: Cleanup of old runnig service
+        shell: bash
+        run: ./node_modules/.bin/pm2 delete "books-stg" || exit 0
+      - name: Running service
+        run: ./node_modules/.bin/pm2 start index.js --name "books-stg" -- 1010
+      - run: echo "Deployment to STG environment finished.."
   test-stg:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - name: Print step name
         run: echo "Testing Sample Book Application service has started on STG environment.."
+
   deploy-prd:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Print step name
-        run: echo "Deployment to PRD environment has started.."
+      - run: echo "Deployment to PRD environment has started.."
+      - name: Install all dependencies
+        run: npm install
+      - name: Cleanup of old runnig service
+        shell: bash
+        run: ./node_modules/.bin/pm2 delete "books-prd" || exit 0
+      - name: Running service
+        run: ./node_modules/.bin/pm2 start index.js --name "books-prd" -- 1010
+      - run: echo "Deployment to PRD environment finished.."
   test-prd:
     runs-on: ubuntu-latest
     steps:
