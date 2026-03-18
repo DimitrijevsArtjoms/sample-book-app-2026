@@ -16,9 +16,10 @@ runs:
       shell: powershell
     - name: Cleanup of old runnig service
       shell: powershell
-      run: ./node_modules/.bin/pm2 delete "books-${{ inputs.environment }}" || exit 0
+      run: .\node_modules\.bin\pm2 delete "books-${{ inputs.environment }}"
+      continue-on-error: true
     - name: Running service
-      run: ./node_modules/.bin/pm2 start index.js --name "books-${{ inputs.environment }}" -- ${{ inputs.port }}
+      run: .\node_modules\.bin\pm2 start index.js --name "books-${{ inputs.environment }}" -- ${{ inputs.port }}
       shell: powershell
     - run: echo "Deployment to ${{ inputs.environment }} environment finished.."
       shell: powershell
