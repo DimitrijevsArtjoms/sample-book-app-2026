@@ -22,8 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: echo "Deployment to DEV environment has started.."
+      - name: Install all dependencies
+        run: npm install
       - name: Cleanup of old runnig service
-        run: ./node_modules/.bin/pm2 delete "books-dev" || true
+        shell: bash
+        run: ./node_modules/.bin/pm2 delete "books-dev" || exit 0
       - name: Running service
         run: ./node_modules/.bin/pm2 start index.js --name "books-dev" -- 1010
       - run: echo "Deployment to DEV environment finished.."
