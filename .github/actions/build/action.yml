@@ -4,9 +4,9 @@ runs:
   using: composite
   steps:
     - run: echo "Installing all necessary node dependencies.."
-      shell: pwsh
+      shell: powershell
     - name: Install all dependencies
       run: npm install
-      shell: pwsh
+      shell: powershell
     - run: echo "Dependencies fully installed.."
-      shell: pwsh
+      shell: powershell

@@ -8,16 +8,16 @@ runs:
   using: composite
   steps:
     - run: echo "Testing SBA service on ${{ inputs.environment }} environment.."
-      shell: pwsh
+      shell: powershell
 
     - name: Install all dependencies
       run: npm install
-      shell: pwsh
+      shell: powershell
       working-directory: e2e-api-tests
     - name: Running API tests
       run: npm run "BOOKS_${{ inputs.environment }}"
-      shell: pwsh
+      shell: powershell
       working-directory: e2e-api-tests
 
     - run: echo "Testing on ${{ inputs.environment }} environment finished.."
-      shell: pwsh
+      shell: powershell
