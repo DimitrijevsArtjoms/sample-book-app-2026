@@ -10,15 +10,15 @@ runs:
   using: composite
   steps:
     - run: echo "Deployment to ${{ inputs.environment }} environment has started.."
-      shell: pwsh
+      shell: bash
     - name: Install all dependencies
       run: npm install
-      shell: pwsh
+      shell: bash
     - name: Cleanup of old runnig service
-      shell: pwsh
+      shell: bash
       run: ./node_modules/.bin/pm2 delete "books-${{ inputs.environment }}" || exit 0
     - name: Running service
       run: ./node_modules/.bin/pm2 start index.js --name "books-${{ inputs.environment }}" -- ${{ inputs.port }}
-      shell: pwsh
+      shell: bash
     - run: echo "Deployment to ${{ inputs.environment }} environment finished.."
-      shell: pwsh
+      shell: bash
