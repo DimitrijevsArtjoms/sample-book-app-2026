@@ -28,9 +28,9 @@ jobs:
   test-dev:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - name: Print step name
-        run: echo "Testing Sample Book Application service has started on DEV environment.."
+      - uses: ./.github/actions/test
+        with:
+          environment: DEV
 
   deploy-stg:
     runs-on: ubuntu-latest
@@ -43,9 +43,9 @@ jobs:
   test-stg:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - name: Print step name
-        run: echo "Testing Sample Book Application service has started on STG environment.."
+      - uses: ./.github/actions/test
+        with:
+          environment: STG
 
   deploy-prd:
     runs-on: ubuntu-latest
@@ -58,6 +58,6 @@ jobs:
   test-prd:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - name: Print step name
-        run: echo "Testing Sample Book Application service has started on PRD environment.."
+      - uses: ./.github/actions/test
+        with:
+          environment: PRD
