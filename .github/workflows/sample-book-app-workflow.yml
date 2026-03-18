@@ -12,14 +12,29 @@ jobs:
       - uses: actions/checkout@v6
       - name: Print step name
         run: echo "Installing all necessary node dependencies.."
-      - name: List all files
-        run: ls
+      - name: Install all dependencies
+        run: npm install
+      - name: Print step name
+        run: echo "All dependencies have been installed successfully.."
   deploy-dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Print step name
-        run: echo "Deployment to DEV environment has started.."
+      - run: echo "Deployment to DEV environment has started.."
+      - name: Cleanup of old runnig service
+        run: bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
+      - name: Running service
+        run: bat ".\\node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- -- ${port}"
+      - run: echo "Deployment to DEV environment finished.."
+
+    # echo "Deployment to ${environment} environment has started.."
+    # git branch: 'main', poll: true, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
+    # powershell 'npm install'
+    # powershell 'ls'
+    # bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
+    # powershell ".\\node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- -- ${port}"
+
+    # echo "Deployment to ${environment} environment finished.."
   test-dev:
     runs-on: ubuntu-latest
     steps:
