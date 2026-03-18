@@ -19,16 +19,11 @@ jobs:
   deploy-dev:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: echo "Deployment to DEV environment has started.."
-      - name: Install all dependencies
-        run: npm install
-      - name: Cleanup of old runnig service
-        shell: bash
-        run: ./node_modules/.bin/pm2 delete "books-DEV" || exit 0
-      - name: Running service
-        run: ./node_modules/.bin/pm2 start index.js --name "books-DEV" -- 1010
-      - run: echo "Deployment to DEV environment finished.."
+      - uses: ./.github/actions/deploy
+        with:
+          environment: DEV
+          port: 1010
+
   test-dev:
     runs-on: ubuntu-latest
     steps:
@@ -39,16 +34,10 @@ jobs:
   deploy-stg:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: echo "Deployment to STG environment has started.."
-      - name: Install all dependencies
-        run: npm install
-      - name: Cleanup of old runnig service
-        shell: bash
-        run: ./node_modules/.bin/pm2 delete "books-STG" || exit 0
-      - name: Running service
-        run: ./node_modules/.bin/pm2 start index.js --name "books-STG" -- 1010
-      - run: echo "Deployment to STG environment finished.."
+      - uses: ./.github/actions/deploy
+        with:
+          environment: STG
+          port: 2020
   test-stg:
     runs-on: ubuntu-latest
     steps:
@@ -59,16 +48,10 @@ jobs:
   deploy-prd:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: echo "Deployment to PRD environment has started.."
-      - name: Install all dependencies
-        run: npm install
-      - name: Cleanup of old runnig service
-        shell: bash
-        run: ./node_modules/.bin/pm2 delete "books-PRD" || exit 0
-      - name: Running service
-        run: ./node_modules/.bin/pm2 start index.js --name "books-PRD" -- 1010
-      - run: echo "Deployment to PRD environment finished.."
+      - uses: ./.github/actions/deploy
+        with:
+          environment: PRD
+          port: 3030
   test-prd:
     runs-on: ubuntu-latest
     steps:
