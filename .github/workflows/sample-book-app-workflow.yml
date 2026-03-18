@@ -28,6 +28,7 @@ jobs:
   test-dev:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/test
         with:
           environment: DEV
@@ -43,6 +44,7 @@ jobs:
   test-stg:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/test
         with:
           environment: STG
@@ -58,6 +60,7 @@ jobs:
   test-prd:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/test
         with:
           environment: PRD
