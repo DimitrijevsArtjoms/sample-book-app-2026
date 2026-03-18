@@ -20,7 +20,6 @@ jobs:
         with:
           environment: DEV
           port: 1010
-
   test-dev:
     runs-on: self-hosted
     needs: deploy-dev
