@@ -58,7 +58,6 @@ jobs:
 
         with:
           environment: STG
-
   deploy-prd:
     runs-on: ubuntu-latest
     needs: test-stg
