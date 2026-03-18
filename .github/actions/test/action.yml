@@ -12,13 +12,19 @@ runs:
         repository: "DimitrijevsArtjoms/RTU-sample-API-automation-2026"
         clean: false
         path: "e2e-api-tests"
+
     - run: echo "Testing SBA service on ${{ inputs.environment }} environment.."
       shell: bash
+
     - name: Install all dependencies
       run: npm install
       shell: bash
+      working-directory: e2e-api-tests
+
     - name: Running API tests
       run: npm run "BOOKS_${{ inputs.environment }}"
       shell: bash
+      working-directory: e2e-api-tests
+
     - run: echo "Testing on ${{ inputs.environment }} environment finished.."
       shell: bash
