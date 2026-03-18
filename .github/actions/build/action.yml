@@ -1,0 +1,12 @@
+name: "Build Application/Service"
+description: "Build Sample Book App service"
+runs:
+  using: composite
+  steps:
+    - run: echo "Installing all necessary node dependencies.."
+      shell: bash
+    - name: Install all dependencies
+      run: npm install
+      shell: bash
+    - run: echo "Dependencies fully installed.."
+      shell: bash

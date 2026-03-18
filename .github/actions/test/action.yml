@@ -7,10 +7,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v6
-      with:
-        repository: "DimitrijevsArtjoms/RTU-sample-API-automation-2026"
-        checkout: false
     - run: echo "Testing SBA service on ${{ inputs.environment }} environment.."
       shell: bash
     - name: Install all dependencies
