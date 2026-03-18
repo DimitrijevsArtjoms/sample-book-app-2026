@@ -14,7 +14,6 @@ runs:
       run: npm install
       shell: bash
       working-directory: e2e-api-tests
-
     - name: Running API tests
       run: npm run "BOOKS_${{ inputs.environment }}"
       shell: bash
