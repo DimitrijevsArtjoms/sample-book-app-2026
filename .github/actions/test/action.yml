@@ -9,8 +9,9 @@ runs:
   steps:
     - uses: actions/checkout@v6
       with:
-        repository: DimitrijevsArtjoms/RTU-sample-API-automation-2026
+        repository: "DimitrijevsArtjoms/RTU-sample-API-automation-2026"
         clean: false
+        path: "e2e-api-tests"
     - run: echo "Testing SBA service on ${{ inputs.environment }} environment.."
       shell: bash
     - name: Install all dependencies
