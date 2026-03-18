@@ -25,9 +25,9 @@ jobs:
         run: npm install
       - name: Cleanup of old runnig service
         shell: bash
-        run: ./node_modules/.bin/pm2 delete "books-dev" || exit 0
+        run: ./node_modules/.bin/pm2 delete "books-DEV" || exit 0
       - name: Running service
-        run: ./node_modules/.bin/pm2 start index.js --name "books-dev" -- 1010
+        run: ./node_modules/.bin/pm2 start index.js --name "books-DEV" -- 1010
       - run: echo "Deployment to DEV environment finished.."
   test-dev:
     runs-on: ubuntu-latest
@@ -45,9 +45,9 @@ jobs:
         run: npm install
       - name: Cleanup of old runnig service
         shell: bash
-        run: ./node_modules/.bin/pm2 delete "books-stg" || exit 0
+        run: ./node_modules/.bin/pm2 delete "books-STG" || exit 0
       - name: Running service
-        run: ./node_modules/.bin/pm2 start index.js --name "books-stg" -- 1010
+        run: ./node_modules/.bin/pm2 start index.js --name "books-STG" -- 1010
       - run: echo "Deployment to STG environment finished.."
   test-stg:
     runs-on: ubuntu-latest
@@ -65,9 +65,9 @@ jobs:
         run: npm install
       - name: Cleanup of old runnig service
         shell: bash
-        run: ./node_modules/.bin/pm2 delete "books-prd" || exit 0
+        run: ./node_modules/.bin/pm2 delete "books-PRD" || exit 0
       - name: Running service
-        run: ./node_modules/.bin/pm2 start index.js --name "books-prd" -- 1010
+        run: ./node_modules/.bin/pm2 start index.js --name "books-PRD" -- 1010
       - run: echo "Deployment to PRD environment finished.."
   test-prd:
     runs-on: ubuntu-latest
