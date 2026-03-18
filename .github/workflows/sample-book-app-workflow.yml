@@ -26,6 +26,11 @@ jobs:
     needs: deploy-dev
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          repository: "DimitrijevsArtjoms/RTU-sample-API-automation-2026"
+          clean: false
+          path: "e2e-api-tests"
       - uses: ./.github/actions/test
         with:
           environment: DEV
@@ -44,6 +49,11 @@ jobs:
     needs: deploy-stg
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          repository: "DimitrijevsArtjoms/RTU-sample-API-automation-2026"
+          clean: false
+          path: "e2e-api-tests"
       - uses: ./.github/actions/test
 
         with:
@@ -63,6 +73,11 @@ jobs:
     needs: deploy-prd
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          repository: "DimitrijevsArtjoms/RTU-sample-API-automation-2026"
+          clean: false
+          path: "e2e-api-tests"
       - uses: ./.github/actions/test
         with:
           environment: PRD
