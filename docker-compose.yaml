@@ -1,0 +1,23 @@
+services:
+  sample-book-app-dev:
+    image: sample-book-app
+    container_name: sample-book-app-dev
+    ports:
+      - "1000:1050"
+
+  sample-book-app-stg:
+    image: sample-book-app
+    container_name: sample-book-app-stg
+    ports:
+      - "2000:1050"
+
+  sample-book-app-prd:
+    image: sample-book-app
+    container_name: sample-book-app-prd
+    ports:
+      - "3000:1050"
+
+networks:
+  sample-book-app-compose-network:
+
+#docker run --rm --network sample-book-app-network -p 1000:1050 --name sample-book-app-dev -d artror/sample-book-app

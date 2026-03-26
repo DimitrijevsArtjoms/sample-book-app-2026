@@ -63,22 +63,23 @@ pipeline {
 
 
 def build() {
-    echo "Installing all necessary node dependencies.."
-    powershell 'npm install'
-    powershell 'ls'
-    echo "Dependencies fully installed.."
+    echo "Building sample-building-app.."
+    powershell 'docker build -t artror/sample-book-app:${BUILD_NUMBER} .'
+
+    echo "Pushing image to docker registry.."
+    powershell 'docker push artror/sample-book-app:${BUILD_NUMBER}'
 }
 
 
 def deploy(String environment, int port) {
-    echo "Deployment to ${environment} environment has started.."
-    git branch: 'main', poll: true, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
-    powershell 'npm install'
-    powershell 'ls'
-    bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
-    powershell ".\\node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- -- ${port}"
+    // echo "Deployment to ${environment} environment has started.."
+    // git branch: 'main', poll: true, url: 'https://github.com/DimitrijevsArtjoms/sample-book-app-2026.git'
+    // powershell 'npm install'
+    // powershell 'ls'
+    // bat ".\\node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
+    // powershell ".\\node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- -- ${port}"
 
-    echo "Deployment to ${environment} environment finished.."
+    // echo "Deployment to ${environment} environment finished.."
 }
 
 def test(String environment) {
