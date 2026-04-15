@@ -1,3 +1,5 @@
+This project is a university assignment that demonstrates a simple book application with API integration. It focuses on working with API endpoints to retrieve and manage book-related data, as well as validating responses. The project is intended for learning purposes and helps to understand basic concepts of API interaction and testing.
+
 Install all depedencies: 
 ```
 npm install
